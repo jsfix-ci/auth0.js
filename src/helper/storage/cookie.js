@@ -36,11 +36,11 @@ CookieStorage.prototype.setItem = function (key, value, options) {
     if (this._options.legacySameSiteCookie) {
       // Save a compatibility cookie without sameSite='none' for browsers that don't support it.
       var legacyOptions = objectHelper.blacklist(params, ['sameSite']);
-      Cookie.set(buildCompatCookieKey(key), value, legacyOptions);
+      Cookie.set(buildCompatCookieKey(key), JSON.stringify(value), legacyOptions);
     }
   }
 
-  Cookie.set(key, value, params);
+  Cookie.set(key, JSON.stringify(value), params);
 };
 
 export default CookieStorage;
